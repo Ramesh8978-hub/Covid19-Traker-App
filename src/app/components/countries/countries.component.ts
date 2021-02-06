@@ -11,7 +11,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./countries.component.css']
 })
 export class CountriesComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'cases'];
+  p: number = 1;
+  displayedColumns: string[] = ['sno','date', 'cases'];
   data : GlobalDataSummary[];
   countries : string[] = [];
   totalConfirmed = 0;
@@ -22,9 +23,10 @@ export class CountriesComponent implements OnInit {
   dateWiseData ;
   loading = true;
   datatable = [];
+
   chart = {
     LineChart : "LineChart", 
-    height: 500, 
+    height: 292, 
     options: {
       animation:{
         duration: 1000,
@@ -34,16 +36,16 @@ export class CountriesComponent implements OnInit {
     }  
   }
  
-  constructor(private service : DataServiceService) { }
+  constructor(private dataService : DataServiceService) { }
 
   ngOnInit(): void {
     merge(
-      this.service.getDateWiseData().pipe(
+      this.dataService.getDateWiseData().pipe(
         map(result=>{
           this.dateWiseData = result;
         })
       ), 
-      this.service.getGlobalData().pipe(map(result=>{
+      this.dataService.getGlobalData().pipe(map(result=>{
         this.data = result;
         this.data.forEach(cs=>{
           this.countries.push(cs.country)
@@ -61,7 +63,6 @@ export class CountriesComponent implements OnInit {
 
   updateChart(){
     this.datatable = [];
-    // this.datatable.push(["Date" , 'Cases'])
     this.selectedCountryData.forEach(cs=>{
       this.datatable.push([cs.date , cs.cases])
     })
@@ -79,9 +80,16 @@ export class CountriesComponent implements OnInit {
     })
 
     this.selectedCountryData  = this.dateWiseData[country]
-    // console.log(this.selectedCountryData);
     this.updateChart();
     
   }
+loadData(){
+  this.dataService.getDateWiseData().pipe(
+    map(result=>{
+      this.dateWiseData = result;
+    })
+  )
+}
+
 
 }

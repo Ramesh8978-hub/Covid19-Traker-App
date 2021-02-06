@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     PieChart : "PieChart" ,
     ColumnChart : 'ColumnChart' ,
     LineChart : "LineChart", 
-    height: 500, 
+    height: 400, 
     options: {
       animation:{
         duration: 1000,
@@ -50,9 +50,7 @@ export class HomeComponent implements OnInit {
                 this.totalDeaths += cs.deaths
                 this.totalRecovered += cs.active
               }
-
             })
-
             this.initChart('c');
           }, 
           complete : ()=>{
@@ -96,8 +94,6 @@ export class HomeComponent implements OnInit {
             cs.country, value
           ])
     })
-    console.log(this.datatable);
-
   }
 
 }

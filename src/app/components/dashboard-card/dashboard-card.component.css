@@ -1,0 +1,10 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+  .card{
+     padding: 20px;
+     margin: 2px;
+  }
+  .value{
+      font-size: 50px;
+  }

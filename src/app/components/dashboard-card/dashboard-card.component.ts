@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as $ from "jquery";
+declare var jQuery: any;
+
 
 @Component({
   selector: 'app-dashboard-card',
@@ -15,10 +18,27 @@ export class DashboardCardComponent implements OnInit {
   totalActive;
   @Input('totalRecovered')
   totalRecovered;
+  counterUp: JQuery<HTMLElement>
 
   constructor() { }
 
   ngOnInit(): void {
+    // $('.value').counterUp({
+    //   delay: 10,
+    //   time: 2000
+    // });
+    // (function ($) {
+    //     $('.value').counterUp({
+    //       delay: 10,
+    //       time: 2000
+    //     });
+    // })(jQuery);
+  }
+
+  Testing() {
+   
+    // var name = $("#textName").val();
+    // alert(name)
   }
 
 }
